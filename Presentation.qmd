@@ -1,0 +1,54 @@
+---
+title: "Unemployment and Adult Literacy Rate Analysis"
+format: 
+    revealjs:
+        theme: simple
+        slideNumber: true
+        transition: fade
+
+---
+
+## Slide 1: Unemployment Rate
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+wdi = pd.read_csv('/Users/rishikhullar/Desktop/QTM350/Assignment5/wdi.csv')
+
+sorted = wdi.sort_values(by='unemployment_rate', ascending=False)
+topunemployment = sorted[['country', 'unemployment_rate']].head(5) 
+print(topunemployment)
+
+plt.hist(wdi['unemployment_rate'], color='salmon')
+plt.xlabel('Unemployment Rate')
+plt.ylabel('Frequency')
+plt.title('Unemployment Rate Distribution')
+plt.show()
+```
+The histogram graph show a right skewed distribution of unemployment rates.
+
+---
+## Slide 2: Adult Literacy Rate
+
+```{python}
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+wdi = pd.read_csv('/Users/rishikhullar/Desktop/QTM350/Assignment5/wdi.csv')
+
+
+sorted2 = wdi.sort_values(by='adult_literacy_rate', ascending=False)
+topliteracy = pd.DataFrame(sorted2[['country', 'adult_literacy_rate']].head(5))
+
+
+plt.bar(topliteracy['country'],topliteracy['adult_literacy_rate'])
+plt.xlabel('Country')
+plt.ylabel('Literacy Rate')
+plt.title('Top Literacy Rates by Country')
+plt.show()
+
+```
+The bar plot shows that most of the highest literacy rates are very similar.

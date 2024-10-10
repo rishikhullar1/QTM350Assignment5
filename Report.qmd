@@ -1,0 +1,87 @@
+---
+title: "Report Document (Assignment 5)"
+author: "Rishi Khullar"
+date: "10/9/24"
+format:
+  html: default
+  pdf: default
+---
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+wdi = pd.read_csv('/Users/rishikhullar/Desktop/QTM350/Assignment5/wdi.csv')
+
+# Exploratory Data Analysis
+inflation_rate_mean = np.mean(wdi['inflation_rate'])
+print(inflation_rate_mean)
+
+sorted = wdi.sort_values(by='unemployment_rate', ascending=False)
+topunemployment = sorted[['country', 'unemployment_rate']].head(5) 
+print(topunemployment)
+
+sorted2 = wdi.sort_values(by='adult_literacy_rate', ascending=False)
+topliteracy = sorted2[['country', 'adult_literacy_rate']].head(5) 
+print(topliteracy)
+
+```
+
+I first imported the dataset and used the numpy package to calculate the average inflation rate across all the countries which was found to be 12.49. Then I used the pandas package to find the top 5 countries with the highest unemployment rate by sorting all of the data by unemployment rate, subsetting the country and unemployment rate columns, and displaying the top 5. I found that Eswatini, South Afria, Djibouti, West Bank and Gaza, and Botswana had the highest unemployment rates. Lastly, I did the same process as before to find the countries with the highest adult literacy rates with Uzbekistan, San Marino, Georgia and Albania being the highest.
+
+```{python}
+#| echo: false
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+wdi = pd.read_csv('/Users/rishikhullar/Desktop/QTM350/Assignment5/wdi.csv')
+
+
+sorted = wdi.sort_values(by='unemployment_rate', ascending=False)
+topunemployment = sorted[['country', 'unemployment_rate']].head(5) 
+
+sorted2 = wdi.sort_values(by='adult_literacy_rate', ascending=False)
+topliteracy = pd.DataFrame(sorted2[['country', 'adult_literacy_rate']].head(5))
+
+plt.hist(wdi['unemployment_rate'], color='salmon')
+plt.xlabel('Unemployment Rate')
+plt.ylabel('Frequency')
+plt.title('Unemployment Rate Distribution')
+plt.show()
+
+
+```
+
+```{python}
+#| echo: false
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+wdi = pd.read_csv('/Users/rishikhullar/Desktop/QTM350/Assignment5/wdi.csv')
+
+
+sorted2 = wdi.sort_values(by='adult_literacy_rate', ascending=False)
+topliteracy = pd.DataFrame(sorted2[['country', 'adult_literacy_rate']].head(5))
+
+
+plt.bar(topliteracy['country'],topliteracy['adult_literacy_rate'])
+plt.xlabel('Country')
+plt.ylabel('Literacy Rate')
+plt.title('Top Literacy Rates by Country')
+plt.show()
+
+```
+
+The histogram graph show a right skewed distribution of unemployment rates. The bar plot shows that most of the highest literacy rates are very similar.
+
+| Top 5 Countries with Highest Literacy Rate | Mean Unemployment Rate |
+|--------------------------------------------|------------------------|
+| Uzbekistan                                 |       7.26             |
+| San Marino                                 |                        |
+| Georgia                                    |                        |
+| Albania                                    |                        |
+| Bosnia and Herzegovina                     |                        |
+The table shows the mean unemployment rate of 7.26 and the top 5 countries with the highest adult literacy rate.
+
